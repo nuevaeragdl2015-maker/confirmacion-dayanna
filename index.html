@@ -1,90 +1,78 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Confirmación de Asistencia</title>
-
-<style>
-body {
-    font-family: Arial, sans-serif;
-    background: #f5f5f5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
-.container {
-    background: white;
-    padding: 25px;
-    border-radius: 15px;
-    width: 90%;
-    max-width: 400px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    text-align: center;
-}
-h2 {
-    margin-bottom: 20px;
-}
-input, select {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-}
-button {
-    background: #25D366;
-    color: white;
-    border: none;
-    padding: 15px;
-    width: 100%;
-    border-radius: 10px;
-    font-size: 16px;
-    cursor: pointer;
-}
-button:hover {
-    background: #1ebe5d;
-}
-</style>
-
+  <meta charset="UTF-8">
+  <title>Confirmación de Asistencia</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .box {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 300px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #25D366;
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #1ebe5d;
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="container">
-    <h2>Confirma tu asistencia</h2>
+<div class="box">
+  <h2>Confirmar Asistencia</h2>
 
-    <input type="text" id="nombre" placeholder="Tu nombre">
-    
-    <select id="asistencia">
-        <option value="">¿Asistirás?</option>
-        <option value="Sí asistiré">Sí asistiré</option>
-        <option value="No podré asistir">No podré asistir</option>
-    </select>
+  <input type="text" id="nombre" placeholder="Tu nombre">
 
-    <input type="number" id="personas" placeholder="Número de personas">
-
-    <button onclick="enviarWhatsApp()">Confirmar por WhatsApp</button>
+  <button onclick="enviarWhatsApp()">Confirmar por WhatsApp</button>
 </div>
 
 <script>
 function enviarWhatsApp() {
-    let nombre = document.getElementById("nombre").value;
-    let asistencia = document.getElementById("asistencia").value;
-    let personas = document.getElementById("personas").value;
+  var nombreInput = document.getElementById("nombre");
 
-    let mensaje = `Hola, soy ${nombre}. Confirmo asistencia a la fiesta de XV años de Dayanna: ${asistencia}. Número de personas: ${personas}`;
-    
-    let numero = "523316041358"; // ← CAMBIA ESTE NÚMERO
+  if (!nombreInput || nombreInput.value.trim() === "") {
+    alert("Por favor escribe tu nombre");
+    return;
+  }
 
-    let url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
-    
-    window.open(url, "_blank");
+  var nombre = nombreInput.value;
+
+  var telefono = "523316041358";
+
+  var mensaje = "Hola, soy " + nombre + 
+                ". Muchas gracias por la invitación, confirmo mi asistencia a la fiesta de XV años  de Dayanna.";
+
+  var url = "https://wa.me/" + telefono + "?text=" + encodeURIComponent(mensaje);
+
+  window.open(url, "_blank");
 }
 </script>
 
 </body>
 </html>
-
